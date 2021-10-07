@@ -1,0 +1,292 @@
+var tData = [
+    {
+        firstname: "Swapnil ",
+        lastname: "Daga",
+        companies: ["/static/newlanding/logo/google_3.png", "/static/newlanding/logo/apple2.png"],
+        image: "/static/newlanding/profile/swapnil.png",
+        linkedin: "https://www.linkedin.com/in/swapnil-daga-b42762130/",
+        description:
+            "Swapnil previously worked at Google London and Apple Hyderabad. He has been professionally coaching students for technical interviews last 3 years with many of his students getting offers from top companies like Google, Microsoft, etc. He was also 6 star on codechef and went to ACM ICPC regionals. Coming from Electronics background at IIIT Hyderabad, he is a role model to a lot of non-CS students getting into Tech.",
+    },
+    {
+        firstname: "Kushagra",
+        lastname: "Juneja",
+        companies: ["/static/newlanding/logo/palantir.png", "/static/newlanding/logo/tower_research.png"],
+        image: "/static/newlanding/profile/kushagra.png",
+        linkedin: "https://www.linkedin.com/in/kushagra-juneja-187763168/",
+        description:
+            "Kushagra is ACM ICPC world finalist and won bronze medal for India at IOI. He previously interned at Palantir London, and works as Quant Strategist in Tower Research. He is also branch topper at IIT Bombay CS. No wonder students are inspired to attend his classes!",
+    },
+    {
+        firstname: "Kritika",
+        lastname: "Agarwal",
+        companies: ["/static/newlanding/logo/google_3.png", "/static/newlanding/logo/IBM.png"],
+        image: "/static/newlanding/profile/Kritika_2.png",
+        linkedin: "https://www.linkedin.com/in/kritika12/",
+        description:
+            "Kritika has diverse experiences, from machine learning and NLP experience at IBM to software internship at Google. Her entrepreneurial spirit had her managing a 100+ people company but her passion for teaching and tech keeps her glued to AlgoUniversity.",
+    },
+    {
+        firstname: "Vaibhav",
+        lastname: "Gupta",
+        companies: ["/static/newlanding/logo/google_3.png", "/static/newlanding/logo/facebook.png"],
+        image: "/static/newlanding/profile/vaibhav_2.png",
+        linkedin: "https://www.linkedin.com/in/oblivious/",
+        description:
+            "Vaibhav is an aspiration for people looking to ace multitasking academics, CGPA, ACM ICPC regionals, interviews and research papers all in parallel (x_x)! He brings in his unique style of teaching which makes things easy to understand. He previously worked at Facebook London and Google Munich.",
+    },
+    {
+        firstname: "Manas Kumar",
+        lastname: "Verma",
+        companies: ["/static/newlanding/directi.png", "/static/newlanding/alphagrep.png"],
+        image: "/static/newlanding/profile/manas.png",
+        linkedin: "https://www.linkedin.com/in/thenextmkv/",
+        description:
+            "Envisioned AlgoUniveristy and brought in some of most talented folks under one roof. Equally driven and committed to building long lasting relations with students, who absolutely adore him and enjoy his depth sessions! In past, he was youngest intern at Directi (age 17!) and contested top % in ACM ICPC in his first year! Passionate about Edtech and impacted 5000+ students through his prior startup.",
+    },
+];
+
+//MOBILE VIEW
+const mobBookShelf = document.getElementById("shelf");
+
+const first = document.createElement("div");
+first.innerHTML = `<div class="book book-scale">
+<div class="title title-collapse">
+  <img src=${tData[0].image} alt="." class="title-img title-img-hide" />
+  &nbsp;&nbsp;
+  <div>
+    ${tData[0].firstname} <span class="head-red">${tData[0].lastname
+    }</span> <br />
+    <div class="companies">${tData[0].companies
+        .map(
+            (mp) =>
+                `<img src=${mp} alt="." style="height:20px; margin:5px 0px !important; border-radius:5px;" />`
+        )
+        .join(" ")}</div>
+  </div>
+</div>
+<div id="book" class="book-content">
+  <img src=${tData[0].image} alt="." class="content-img" />
+  <div class="text">
+    ${tData[0].description}
+    <br/><br/>
+    <div class="team-icons">
+    <a href=${tData[0].linkedin} target="_blank"><i class="fab fa-linkedin"></i>&nbsp;Linkedin</a>
+    </div>
+  </div>
+</div>
+</div>`;
+
+mobBookShelf.appendChild(first);
+
+var teamData = tData.slice(1);
+
+console.log(teamData);
+
+teamData.map((mp) => {
+    const first = document.createElement("div");
+    first.innerHTML = `<div class="book">
+<div class="title">
+  <img src=${mp.image} alt="." class="title-img" />
+  &nbsp;&nbsp;
+  <div>
+    ${mp.firstname} <span class="head-red">${mp.lastname}</span> <br />
+    <div class="companies">${mp.companies
+            .map(
+                (mpe) =>
+                    `<img src=${mpe} alt="." style="height:20px; margin:5px 0px !important; border-radius:5px;" />`
+            )
+            .join(" ")}</div>
+  </div>
+</div>
+<div id="book" class="book-content hide">
+  <img src=${mp.image} alt="." class="content-img" />
+  <div class="text">
+    ${mp.description}
+    <br/><br/>
+    <div class="team-icons">
+    <a href=${mp.linkedin} target="_blank"><i class="fab fa-linkedin"></i>&nbsp;Linkedin</a>
+    </div>
+  </div>
+</div>
+</div>`;
+    mobBookShelf.appendChild(first);
+});
+
+//LAPPY VIEW
+const lapBookShelf = document.getElementById("lap-shelf-books");
+
+tData.map((mp) => {
+    const dv = document.createElement("div");
+    dv.classList.add("book");
+    dv.innerHTML = `
+<div class="title">
+  <img src=${mp.image} alt="." class="title-img" />
+  &nbsp;&nbsp;
+  <div>
+    ${mp.firstname} <span class="head-red">${mp.lastname}</span> <br />
+    <div class="companies">${mp.companies
+            .map(
+                (mpe) =>
+                    `<img src=${mpe} alt="." style="height:20px; margin:5px 0px !important; border-radius:5px;" />`
+            )
+            .join(" ")}</div>
+  </div>
+</div>
+`;
+
+    dv.addEventListener("click", () => {
+        document.getElementById("lap-shelf-content").innerHTML = `
+      <div class="book-content">
+  <img src=${mp.image} alt="." class="content-img" />
+  <div class="text">
+    ${mp.description}
+    <br/><br/>
+    <div class="team-icons">
+    <a href=${mp.linkedin} target="_blank" ><i class="fab fa-linkedin"></i>&nbsp;Linkedin</a>
+    </div>
+
+  </div>
+</div>`;
+    });
+
+    lapBookShelf.appendChild(dv);
+});
+
+//=============================PRODUCT FEATURES===============================//
+var prodData = [
+    {
+        heading: "DSA",
+        features: [
+            {
+                heading: "Live Classes",
+                descp:
+                    "Learn live only from those who have got themselves top job. Ask questions live during the lecture, review class recordings anytime.",
+                img: "/static/newlanding/feature/live.svg",
+            },
+            {
+                heading: "Assignment",
+                descp:
+                    "Instead of cramming up Leetcode and GFG, we give you small number of hand picked high quality problems that you can submit & get better at solving unseen problems.",
+                img: "/static/newlanding/feature/assignment.svg",
+            },
+            {
+                heading: "Contest",
+                descp:
+                    "Solve internally hosted premium contest biweekly with upsolving sessions that uniquely blends Competitive programming and interview problems that makes preparation fun and makes you ready for facing coding rounds.",
+                img: "/static/newlanding/feature/contest.svg",
+            },
+        ],
+    },
+    {
+        heading: "DEV/Profile",
+        features: [
+            {
+                heading: "Star Project",
+                descp:
+                    "Build badass projects with your assigned mentors, that helps you flex your programming skills and helps you truly stand out from the crowd.",
+                img: "/static/newlanding/feature/project.svg",
+            },
+            {
+                heading: "Resume 1-on-1",
+                descp:
+                    "Resumes are your first face to companies and gets you shortlisted/rejected for interviews calls. We sit down 1-on-1 to iteratively improve your profile to its best shape.",
+                img: "/static/newlanding/feature/resume.svg",
+            },
+        ],
+    },
+    {
+        heading: "Placement",
+        features: [
+            {
+                heading: "Mock Interviews",
+                descp:
+                    "Take up mock interviews before facing real interviews to polish soft skills and receive tips on how can you improve your interview presence",
+                img: "/static/newlanding/feature/interview.svg",
+            },
+            {
+                heading: "Referrals",
+                descp:
+                    "We provide you referrals at companies at right time (international referrals too), which gets lands you interviews,so you actually get opportunity to flex skills you built.",
+                img: "/static/newlanding/feature/referral.svg",
+            },
+        ],
+    },
+    {
+        heading: "Company++",
+        features: [
+            {
+                heading: "TheJobOverflow",
+                descp:
+                    "Get premium access to TJO which is Stackoverflow for recent interview questions. Got Google interview next week? See here most questions Google asked this month!",
+                img: "/static/newlanding/feature/tjo.png",
+            },
+            {
+                heading: "Playbook",
+                descp:
+                    "Allows you to solve problems company-wise in simulated interview setting. Best product to get into interview mindset before interviews.",
+                img: "/static/newlanding/feature/playbook.svg",
+            },
+            {
+                heading: "Ladder map",
+                descp:
+                    "Upsolving is a must but how do you do that? Laddermap is a tool that helps you upsolve and improve on a category of topics related to problem you weren't able to solve.",
+                img: "/static/newlanding/feature/ladder.svg",
+            },
+        ],
+    },
+];
+
+const tabs = document.getElementById("tabs");
+
+prodData.map((mp) => {
+    const tab = document.createElement("div");
+    tab.classList.add("tab");
+    tab.innerText = mp.heading;
+
+    tab.addEventListener("click", () => {
+        const features = document.getElementById("feature-content");
+
+        features.innerHTML = ``;
+
+        mp.features.map((mpe) => {
+            var feat = "";
+            if(mpe.heading === "TheJobOverflow"){
+                console.log("hi")
+                feat = document.createElement("div");
+                    feat.classList.add("feature-card");
+                    feat.classList.add("bg-red");
+                    feat.innerHTML = `
+                    <div class="feature-image">
+                    <img src=${mpe.img} alt="." />
+                </div>
+                <div class="feature-descp">
+                    <div class="feature-head">${mpe.heading}</div>
+                    <div class="feature-text">
+                    ${mpe.descp}
+                    </div>
+                </div>
+            `
+            }
+            else{
+
+                    feat = document.createElement("div");
+                    feat.classList.add("feature-card");
+                    feat.innerHTML = `
+                    <div class="feature-image">
+                    <img src=${mpe.img} alt="." />
+                </div>
+                <div class="feature-descp">
+                    <div class="feature-head">${mpe.heading}</div>
+                    <div class="feature-text">
+                    ${mpe.descp}
+                    </div>
+                </div>
+            `};
+
+            features.appendChild(feat);
+        });
+    });
+
+    tabs.appendChild(tab);
+});
